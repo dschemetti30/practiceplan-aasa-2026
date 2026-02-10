@@ -275,6 +275,7 @@
   }
 
   /* ===== BEFORE / AFTER ===== */
+  /* ===== THE REAL COST ===== */
   .ba-section { padding: 5rem 2rem; background: var(--white); }
   .ba-section .section-sub { margin-left: auto; margin-right: auto; }
 
@@ -337,16 +338,16 @@
   .ba-arrow-circle svg { width: 22px; height: 22px; color: white; }
 
   /* ===== DEMO PREVIEW ===== */
-  .demo-section { padding: 5rem 2rem; background: var(--off-white); }
+  .demo-section { padding: 5rem 2rem; background: #ebedf0; }
   .demo-section .section-sub { margin-left: auto; margin-right: auto; }
 
   .demo-frame {
     max-width: 900px; margin: 0 auto;
-    background: var(--gray-900); border-radius: 16px; overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.05);
+    background: var(--white); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.1), 0 0 0 1px rgba(0,0,0,0.06);
   }
   .demo-bar {
-    background: var(--gray-800); padding: 12px 16px;
+    background: #f0f1f3; padding: 12px 16px; border-bottom: 1px solid rgba(0,0,0,0.06);
     display: flex; align-items: center; gap: 8px;
   }
   .demo-dot { width: 10px; height: 10px; border-radius: 50%; }
@@ -355,11 +356,11 @@
   .demo-dot--g { background: #28ca41; }
   .demo-url {
     flex: 1; text-align: center; font-size: 0.7rem;
-    color: rgba(255,255,255,0.3); font-weight: 500;
+    color: rgba(0,0,0,0.35); font-weight: 500;
   }
 
   .demo-content {
-    padding: 2rem;
+    padding: 2rem; background: #f8f9fb;
     min-height: 400px;
     display: flex;
     flex-direction: column;
@@ -370,51 +371,51 @@
   /* Animated dashboard mockup */
   .mock-header {
     display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 1.5rem; background: rgba(0,0,0,0.3); padding: 0.6rem 1rem; border-radius: 8px;
+    margin-bottom: 1.5rem; background: #f5f6f8; padding: 0.6rem 1rem; border-radius: 8px; border: 1px solid rgba(0,0,0,0.06);
   }
   .mock-logo { display: flex; align-items: center; }
   .mock-logo svg { height: 20px; width: auto; }
   .mock-nav { display: flex; gap: 1.5rem; }
-  .mock-nav-item { width: 50px; height: 8px; border-radius: 4px; background: rgba(255,255,255,0.08); }
+  .mock-nav-item { width: 50px; height: 8px; border-radius: 4px; background: rgba(0,0,0,0.08); }
 
   .mock-grid {
     display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;
     margin-bottom: 1.5rem;
   }
   .mock-stat-card {
-    background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    background: var(--white); border: 1px solid rgba(0,0,0,0.08);
     border-radius: 10px; padding: 1rem;
     opacity: 0; transform: translateY(8px);
     transition: opacity 0.8s ease, transform 0.8s ease, border-color 0.6s ease, background 0.6s ease;
   }
   .mock-stat-card.visible { opacity: 1; transform: translateY(0); }
   .mock-stat-card.glow {
-    border-color: rgba(0,168,79,0.3);
+    border-color: rgba(0,168,79,0.35);
     background: rgba(0,168,79,0.04);
   }
 
-  .mock-stat-label { font-size: 0.6rem; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
-  .mock-stat-value { font-size: 1.4rem; font-weight: 800; color: var(--white); transition: color 0.3s ease; }
+  .mock-stat-label { font-size: 0.6rem; color: rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+  .mock-stat-value { font-size: 1.4rem; font-weight: 800; color: var(--gray-900); transition: color 0.3s ease; }
   .mock-stat-value .g { color: var(--green); }
-  .mock-stat-card.glow .mock-stat-value { color: var(--green-light); }
+  .mock-stat-card.glow .mock-stat-value { color: var(--green); }
 
   .mock-calendar {
     flex: 1;
     display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px;
   }
   .mock-day-header {
-    font-size: 0.5rem; color: rgba(255,255,255,0.25); text-align: center;
+    font-size: 0.5rem; color: rgba(0,0,0,0.35); text-align: center;
     font-weight: 700; padding: 4px 0; letter-spacing: 0.5px;
   }
   .mock-day {
-    min-height: 54px; border-radius: 4px; background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.04); position: relative;
+    min-height: 54px; border-radius: 4px; background: #fafbfc;
+    border: 1px solid rgba(0,0,0,0.06); position: relative;
     padding: 2px; display: flex; flex-direction: column; gap: 1px;
     transition: background 0.5s ease, border-color 0.5s ease;
     overflow: hidden;
   }
   .mock-day .day-num {
-    font-size: 0.38rem; color: rgba(255,255,255,0.2); padding: 1px 3px; font-weight: 600;
+    font-size: 0.38rem; color: rgba(0,0,0,0.3); padding: 1px 3px; font-weight: 600;
   }
 
   /* Event blocks inside calendar days */
@@ -435,7 +436,7 @@
   /* Checkmark on booked days */
   .mock-day .day-check {
     position: absolute; top: 2px; right: 3px; transform: scale(0);
-    font-size: 0.5rem; color: var(--green-light); pointer-events: none; z-index: 2;
+    font-size: 0.5rem; color: var(--green); pointer-events: none; z-index: 2;
     transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
     opacity: 0; line-height: 1;
   }
@@ -461,7 +462,7 @@
 
 .mock-day.active {
     border-color: var(--green);
-    background: rgba(0,168,79,0.08);
+    background: rgba(0,168,79,0.06);
     animation: calPulse 3s ease-in-out infinite;
   }
   @keyframes calPulse {
@@ -1041,9 +1042,10 @@
       <h3 id="heroFormTitle">Schedule a Board-Ready Walkthrough</h3>
       <p class="card-sub" id="heroFormSub">We'll walk you through the platform with your district's facilities - so you can present it to your board with confidence.</p>
       <div id="heroForm" class="quick-form">
-        <input type="text" class="form-input" placeholder="First Name" id="hName">
+        <input type="text" class="form-input" placeholder="Full Name" id="hName">
         <input type="text" class="form-input" placeholder="District / School System" id="hOrg">
         <input type="email" class="form-input" placeholder="Work Email" id="hEmail">
+        <input type="tel" class="form-input" placeholder="Cell Phone" id="hPhone">
         <button class="form-submit" onclick="submitHero()">Schedule My Walkthrough</button>
       </div>
       <div class="form-success" id="heroSuccess">
@@ -1118,7 +1120,7 @@
       <div class="cost-card">
         <div class="cost-before">Phone tag</div>
         <div class="cost-arrow">&#8594;</div>
-        <div class="cost-after">24/7 online booking</div>
+        <div class="cost-after">Self-service booking</div>
         <div class="cost-label">Community access to your spaces</div>
       </div>
       <div class="cost-card">
@@ -1151,7 +1153,7 @@
   <defs>
     <style>
       .cls-1, .cls-2 {
-        stroke: #fff;
+        stroke: none;
         stroke-miterlimit: 10;
         stroke-width: 1.4px;
       }
@@ -1259,7 +1261,7 @@
         <!-- Activity feed below calendar -->
         <div id="mockToast" style="margin-top:0.75rem;background:rgba(0,168,79,0.1);border:1px solid rgba(0,168,79,0.25);border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:10px;opacity:0;transition:all 0.4s ease;">
           <span id="toastDot" style="color:#00c95e;font-size:0.55rem;">&#9679;</span>
-          <span id="toastText" style="color:rgba(255,255,255,0.85);font-size:0.78rem;font-weight:600;letter-spacing:0.2px;">New booking request</span>
+          <span id="toastText" style="color:rgba(0,0,0,0.7);font-size:0.78rem;font-weight:600;letter-spacing:0.2px;">New booking request</span>
         </div>
       </div>
     </div>
@@ -1544,6 +1546,7 @@ function submitHero() {
   const name = document.getElementById('hName').value.trim();
   const org = document.getElementById('hOrg').value.trim();
   const email = document.getElementById('hEmail').value.trim();
+  const phone = document.getElementById('hPhone').value.trim();
   if (!name || !email) {
     if (!name) flashBorder('hName');
     if (!email) flashBorder('hEmail');
@@ -1555,6 +1558,7 @@ function submitHero() {
   params.append('entry.62845131', name);
   params.append('entry.668821882', org);
   params.append('entry.1564644554', email);
+  params.append('entry.2045164055', phone);
   fetch(formUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() });
   document.getElementById('heroFormTitle').style.display = 'none';
   document.getElementById('heroFormSub').style.display = 'none';
