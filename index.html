@@ -277,6 +277,27 @@
   .ba-section { padding: 5rem 2rem; background: var(--white); }
   .ba-section .section-sub { margin-left: auto; margin-right: auto; }
 
+  .cost-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;
+    max-width: 900px; margin: 0 auto;
+  }
+  .cost-card {
+    background: #f8f9fa; border-radius: 12px; padding: 1.5rem 1.25rem;
+    text-align: center; border: 1px solid rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cost-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .cost-before {
+    font-size: 0.82rem; font-weight: 600; color: #c0392b; opacity: 0.8;
+    text-decoration: line-through; text-decoration-color: rgba(192,57,43,0.4);
+    margin-bottom: 0.4rem;
+  }
+  .cost-arrow { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 0.4rem; }
+  .cost-after {
+    font-size: 1.05rem; font-weight: 800; color: var(--green); margin-bottom: 0.75rem;
+  }
+  .cost-label { font-size: 0.72rem; color: var(--gray-500); line-height: 1.4; text-transform: uppercase; letter-spacing: 0.5px; }
+
   .ba-grid {
     display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0;
     max-width: 950px; margin: 0 auto; align-items: stretch;
@@ -452,58 +473,136 @@
   }
 
   /* ===== HOW IT WORKS ===== */
-  .how-section { padding: 5rem 2rem; background: var(--white); }
-  .how-section .section-sub { margin: 0 auto 3.5rem; }
+  .how-section {
+    padding: 5rem 2rem; background: var(--gray-900);
+    position: relative; overflow: hidden;
+  }
+  .how-section::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 100%, rgba(0,168,79,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .how-section .section-label { color: var(--green); }
+  .how-section .section-title { color: var(--white); }
 
-  .steps {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-    max-width: 1000px; margin: 0 auto;
+  .steps-timeline {
+    max-width: 900px; margin: 0 auto; position: relative;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding-top: 2rem;
   }
-  .step {
-    text-align: center; position: relative;
-    background: var(--off-white); border: 1px solid var(--gray-100);
-    border-radius: 16px; padding: 2rem 1.5rem;
-    transition: all 0.3s ease;
+  /* Connecting line */
+  .steps-timeline::before {
+    content: ''; position: absolute; top: calc(2rem + 28px);
+    left: 15%; right: 15%; height: 2px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+    opacity: 0.3;
   }
-  .step:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
-  .step-num {
-    width: 48px; height: 48px; border-radius: 12px;
-    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-    color: var(--white); font-size: 1.2rem; font-weight: 900;
+
+  .timeline-step {
+    flex: 1; text-align: center; position: relative; z-index: 1;
+    padding: 0 1rem;
+  }
+  .timeline-icon {
+    width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 1.5rem;
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.25rem;
+    font-size: 1.4rem;
+    position: relative;
   }
-  .step h3 { font-size: 1.05rem; font-weight: 700; color: var(--gray-900); margin-bottom: 0.5rem; }
-  .step p { font-size: 0.88rem; color: var(--gray-500); line-height: 1.6; max-width: 280px; margin: 0 auto; }
+  .timeline-step:nth-child(1) .timeline-icon {
+    background: linear-gradient(135deg, rgba(0,118,187,0.15), rgba(0,118,187,0.05));
+    border: 2px solid rgba(0,118,187,0.3);
+    box-shadow: 0 0 20px rgba(0,118,187,0.1);
+  }
+  .timeline-step:nth-child(2) .timeline-icon {
+    background: linear-gradient(135deg, rgba(0,168,79,0.12), rgba(0,118,187,0.08));
+    border: 2px solid rgba(0,168,79,0.25);
+    box-shadow: 0 0 20px rgba(0,168,79,0.08);
+  }
+  .timeline-step:nth-child(3) .timeline-icon {
+    background: linear-gradient(135deg, rgba(0,168,79,0.18), rgba(0,168,79,0.06));
+    border: 2px solid rgba(0,168,79,0.35);
+    box-shadow: 0 0 24px rgba(0,168,79,0.12);
+  }
+  .timeline-tag {
+    display: inline-block; font-size: 0.55rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 2px; color: var(--green); margin-bottom: 0.6rem;
+    opacity: 0.7;
+  }
+  .timeline-step h3 {
+    font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem;
+  }
+  .timeline-step p {
+    font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.6;
+    max-width: 240px; margin: 0 auto;
+  }
 
   /* ===== FEATURES ===== */
   .features-section {
-    padding: 5rem 2rem; background: var(--gray-900);
+    padding: 5rem 2rem; background: var(--blue);
     position: relative; overflow: hidden;
   }
   .features-section::before {
     content: ''; position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 50% 50% at 0% 100%, rgba(0,168,79,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 50% at 100% 0%, rgba(0,118,187,0.08) 0%, transparent 70%);
+      radial-gradient(ellipse 60% 60% at 0% 100%, rgba(0,168,79,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 100% 0%, rgba(255,255,255,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 30% 30% at 50% 50%, rgba(0,0,0,0.1) 0%, transparent 50%);
+    pointer-events: none;
   }
   .features-section .section-label { color: var(--green-light); }
   .features-section .section-title { color: var(--white); }
-  .features-section .section-sub { color: rgba(255,255,255,0.45); }
+  .features-section .section-sub { color: rgba(255,255,255,0.55); }
 
-  .features-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.25rem; position: relative; z-index: 1;
+  .bento-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; max-width: 720px; margin: 0 auto;
+    position: relative; z-index: 1;
   }
-  .feature-card {
-    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 14px; padding: 1.75rem; backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
+  .bento-card {
+    border-radius: 16px; padding: 2rem 1.75rem;
+    position: relative; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
   }
-  .feature-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); transform: translateY(-3px); }
-  .feature-icon { font-size: 1.8rem; margin-bottom: 0.75rem; display: block; }
-  .feature-card h3 { font-size: 0.98rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
-  .feature-card p { font-size: 0.85rem; color: rgba(255,255,255,0.45); line-height: 1.6; }
+  .bento-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
+
+  /* Glass cards */
+  .bento-glass {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+  }
+  .bento-glass:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+
+  /* Accent card - green */
+  .bento-accent {
+    background: var(--green); border: none;
+  }
+  .bento-accent:hover { background: var(--green-light); }
+  .bento-accent h3 { color: var(--white) !important; }
+  .bento-accent p { color: rgba(255,255,255,0.85) !important; }
+  .bento-accent .bento-icon { background: rgba(255,255,255,0.2) !important; color: var(--white) !important; }
+
+
+  .bento-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem; font-size: 1.1rem; color: var(--green-light);
+  }
+  .bento-card h3 {
+    font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem;
+  }
+  .bento-card p {
+    font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6;
+  }
+
+
+  /* Decorative glow on accent card */
+  .bento-accent::after {
+    content: ''; position: absolute; top: -30%; right: -20%; width: 60%; height: 80%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
 
   /* ===== ROI CALCULATOR ===== */
   .roi-section { padding: 5rem 2rem; background: var(--off-white); }
@@ -559,22 +658,68 @@
     font-size: 0.85rem; color: rgba(255,255,255,0.5);
   }
 
-  /* ===== TESTIMONIAL ===== */
-  .testimonial-section { padding: 4.5rem 2rem; background: var(--white); }
-  .testimonial-card { max-width: 800px; margin: 0 auto; text-align: center; }
-  .testimonial-stars { font-size: 1.3rem; margin-bottom: 1rem; letter-spacing: 4px; }
+  /* ===== TESTIMONIAL CAROUSEL ===== */
+  .testimonial-section {
+    padding: 5rem 2rem; background: var(--gray-900);
+    position: relative; overflow: hidden;
+  }
+  .testimonial-section::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(0,118,187,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(0,168,79,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .testimonial-section-label {
+    text-align: center; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px;
+    color: var(--green); font-weight: 700; margin-bottom: 2.5rem; position: relative;
+  }
+  .testimonial-carousel { max-width: 720px; margin: 0 auto; position: relative; min-height: 200px; }
+  .testimonial-slide {
+    position: absolute; top: 0; left: 0; right: 0;
+    opacity: 0; transform: translateX(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+  }
+  .testimonial-slide.active {
+    opacity: 1; transform: translateX(0); pointer-events: auto;
+    position: relative;
+  }
+  .testimonial-slide.exit-left {
+    opacity: 0; transform: translateX(-30px);
+  }
+  .testimonial-card {
+    text-align: center; padding: 0 1.5rem;
+  }
   .testimonial-quote {
-    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
-    font-weight: 500; color: var(--gray-800); line-height: 1.65;
-    margin-bottom: 1.75rem; font-style: italic; position: relative;
+    font-size: clamp(1.05rem, 2vw, 1.25rem); font-weight: 400; color: rgba(255,255,255,0.9);
+    line-height: 1.75; margin-bottom: 2rem; font-style: italic;
   }
-  .testimonial-quote::before {
-    content: '\201C'; font-size: 5rem; font-weight: 900; color: var(--green); opacity: 0.12;
-    position: absolute; top: -1.5rem; left: 50%; transform: translateX(-50%);
-    line-height: 1; font-style: normal;
+  .testimonial-quote strong { color: var(--green-light); font-weight: 600; font-style: normal; }
+  .testimonial-divider {
+    width: 40px; height: 2px; background: var(--green); margin: 0 auto 1.25rem; border-radius: 1px;
+    opacity: 0.6;
   }
-  .testimonial-author { font-size: 0.9rem; font-weight: 700; color: var(--blue); }
-  .testimonial-role { font-size: 0.8rem; color: var(--gray-500); margin-top: 3px; }
+  .testimonial-author { font-size: 1rem; font-weight: 700; color: var(--white); }
+  .testimonial-role { font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-top: 4px; font-weight: 500; }
+  .carousel-nav {
+    display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2.5rem;
+    position: relative;
+  }
+  .carousel-dots { display: flex; gap: 8px; }
+  .carousel-dot {
+    width: 32px; height: 3px; border-radius: 2px;
+    background: rgba(255,255,255,0.15); cursor: pointer;
+    transition: background 0.3s ease, width 0.3s ease;
+    border: none; padding: 0;
+  }
+  .carousel-dot.active { background: var(--green); width: 48px; }
+  .carousel-arrow {
+    width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.5); cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; transition: all 0.3s ease;
+  }
+  .carousel-arrow:hover { border-color: rgba(255,255,255,0.25); color: var(--white); background: rgba(255,255,255,0.08); }
 
   /* ===== CTA BOTTOM ===== */
   .cta-section {
@@ -629,9 +774,11 @@
     .hero .hero-sub { margin-left: auto; margin-right: auto; }
     .hero-actions { justify-content: center; }
     .hero-card { max-width: 420px; margin: 0 auto; }
-    .ba-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .cost-grid { grid-template-columns: 1fr 1fr; }
+    .ba-section { padding: 3rem 1.25rem; }
     .ba-arrow { transform: rotate(90deg); padding: 0.5rem 0; }
-    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .bento-grid { grid-template-columns: 1fr 1fr; }
+    .bento-wide { grid-column: span 2; }
   }
 
   @media (max-width: 768px) {
@@ -667,9 +814,6 @@
 
     /* Before/After */
     .ba-section { padding: 3rem 1.25rem; }
-    .ba-col { padding: 1.5rem; }
-    .ba-col h3 { font-size: 0.75rem; }
-    .ba-col li { font-size: 0.82rem; gap: 8px; }
 
     /* Demo frame */
     .demo-section { padding: 3rem 1rem; }
@@ -688,19 +832,21 @@
 
     /* How It Works */
     .how-section { padding: 3rem 1.25rem; }
-    .steps { grid-template-columns: 1fr; gap: 1.25rem; }
-    .step { padding: 1.5rem 1.25rem; }
-    .step-num { width: 40px; height: 40px; border-radius: 10px; font-size: 1rem; margin-bottom: 1rem; }
-    .step h3 { font-size: 0.95rem; }
-    .step p { font-size: 0.82rem; }
+    .steps-timeline { flex-direction: column; align-items: center; gap: 2rem; }
+    .steps-timeline::before { display: none; }
+    .timeline-step { padding: 0; }
+    .timeline-step h3 { font-size: 0.95rem; }
+    .timeline-step p { font-size: 0.82rem; }
 
     /* Features */
     .features-section { padding: 3rem 1.25rem; }
-    .features-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-    .feature-card { padding: 1.25rem; }
+    .bento-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+    .bento-wide { grid-column: span 1; }
+    .bento-card { padding: 1.5rem 1.25rem; }
+    .bento-card[style*="display:flex"] { flex-direction: column; }
     .feature-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
-    .feature-card h3 { font-size: 0.9rem; }
-    .feature-card p { font-size: 0.8rem; }
+    .bento-card h3 { font-size: 0.9rem; }
+    .bento-card p { font-size: 0.8rem; }
 
     /* ROI */
     .roi-section { padding: 3rem 1.25rem; }
@@ -713,8 +859,8 @@
 
     /* Testimonial */
     .testimonial-section { padding: 3rem 1.25rem; }
-    .testimonial-quote { font-size: 1rem; }
-    .testimonial-quote::before { font-size: 4rem; top: -1rem; }
+    .testimonial-quote { font-size: 0.95rem; }
+    .carousel-arrow { width: 32px; height: 32px; font-size: 0.75rem; }
 
     /* CTA */
     .cta-section { padding: 3rem 1.25rem; }
@@ -755,15 +901,17 @@
     .logos-row { gap: 0.5rem; }
     .logo-item { width: 85px; height: 36px; border-radius: 6px; }
 
-    .ba-col { padding: 1.25rem; border-radius: 12px; }
-    .ba-col li { font-size: 0.78rem; }
 
     .mock-stat-card { padding: 0.5rem; }
     .mock-stat-value { font-size: 0.85rem; }
     .mock-stat-label { font-size: 0.4rem; }
     .demo-content { padding: 1rem; min-height: 280px; }
 
-    .step { padding: 1.25rem 1rem; border-radius: 12px; }
+    .timeline-step h3 { font-size: 0.9rem; }
+    .timeline-icon { width: 48px; height: 48px; font-size: 1.2rem; }
+
+    .cost-grid { grid-template-columns: 1fr; }
+    .cost-card { padding: 1.25rem 1rem; }
 
     .roi-body { padding: 1.25rem; }
     .roi-result-value { font-size: 1.8rem; }
@@ -771,7 +919,7 @@
     .section-title { font-size: 1.3rem; }
     .cta-content h2 { font-size: 1.4rem; }
 
-    .testimonial-quote { font-size: 0.92rem; }
+    .testimonial-quote { font-size: 0.82rem; }
     .testimonial-stars { font-size: 1rem; }
   }
 
@@ -783,6 +931,26 @@
     .stat-label { font-size: 0.55rem; }
     .mock-grid { grid-template-columns: repeat(3, 1fr); gap: 4px; }
   }
+
+  /* ===== MOBILE STICKY CTA ===== */
+  .mobile-sticky-cta {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+    background: var(--gray-900); border-top: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 16px; text-align: center;
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.3);
+  }
+  .mobile-sticky-cta a {
+    display: block; background: var(--green); color: var(--white);
+    padding: 14px; border-radius: 10px; font-weight: 700; font-size: 0.9rem;
+    text-decoration: none; letter-spacing: 0.3px;
+    transition: background 0.3s ease;
+  }
+  .mobile-sticky-cta a:hover { background: var(--green-light); }
+  @media (max-width: 768px) {
+    .mobile-sticky-cta { display: block; }
+    body { padding-bottom: 70px; }
+  }
+
 </style>
 </head>
 <body>
@@ -869,47 +1037,27 @@
 
     <!-- Lead capture card -->
     <div class="hero-card">
-      <h3>Get a Custom Revenue Report</h3>
-      <p class="card-sub">See what your facilities could generate. Board-ready numbers in 48 hours.</p>
+      <h3 id="heroFormTitle">Schedule a Board-Ready Walkthrough</h3>
+      <p class="card-sub" id="heroFormSub">We'll walk you through the platform with your district's facilities - so you can present it to your board with confidence.</p>
       <div id="heroForm" class="quick-form">
         <input type="text" class="form-input" placeholder="First Name" id="hName">
         <input type="text" class="form-input" placeholder="District / School System" id="hOrg">
         <input type="email" class="form-input" placeholder="Work Email" id="hEmail">
-        <button class="form-submit" onclick="submitHero()">Get My Revenue Report</button>
+        <button class="form-submit" onclick="submitHero()">Schedule My Walkthrough</button>
       </div>
       <div class="form-success" id="heroSuccess">
         <div class="check-circle">&#10003;</div>
         <h4>You're on the list!</h4>
-        <p>Your custom report will hit your inbox within 48 hours. Want a live walkthrough? Booth #1344 in the Exhibit Hall.</p>
+        <p>We'll reach out within 24 hours to schedule your walkthrough. In the meantime, visit Booth #1344 in the Exhibit Hall.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ===== SOCIAL PROOF LOGOS ===== -->
+<!-- ===== SOCIAL PROOF ===== -->
 <section class="logos-bar">
   <div class="logos-label">Trusted by school districts in 23+ states</div>
-  <div class="logos-row">
-    <div class="logo-item">
-      <svg viewBox="0 0 130 40" fill="none"><rect x="8" y="8" width="24" height="24" rx="4" fill="#c8d0da"/><rect x="40" y="12" width="50" height="6" rx="3" fill="#c8d0da"/><rect x="40" y="22" width="35" height="5" rx="2.5" fill="#e0e5ec"/></svg>
-    </div>
-    <div class="logo-item">
-      <svg viewBox="0 0 130 40" fill="none"><circle cx="20" cy="20" r="12" fill="#c8d0da"/><rect x="38" y="12" width="55" height="6" rx="3" fill="#c8d0da"/><rect x="38" y="22" width="40" height="5" rx="2.5" fill="#e0e5ec"/></svg>
-    </div>
-    <div class="logo-item">
-      <svg viewBox="0 0 130 40" fill="none"><polygon points="20,6 32,34 8,34" fill="#c8d0da"/><rect x="40" y="12" width="48" height="6" rx="3" fill="#c8d0da"/><rect x="40" y="22" width="32" height="5" rx="2.5" fill="#e0e5ec"/></svg>
-    </div>
-    <div class="logo-item">
-      <svg viewBox="0 0 130 40" fill="none"><rect x="6" y="10" width="20" height="20" rx="10" fill="#c8d0da"/><rect x="34" y="12" width="56" height="6" rx="3" fill="#c8d0da"/><rect x="34" y="22" width="42" height="5" rx="2.5" fill="#e0e5ec"/></svg>
-    </div>
-    <div class="logo-item">
-      <svg viewBox="0 0 130 40" fill="none"><rect x="8" y="8" width="24" height="24" rx="12" fill="none" stroke="#c8d0da" stroke-width="3"/><rect x="40" y="12" width="52" height="6" rx="3" fill="#c8d0da"/><rect x="40" y="22" width="38" height="5" rx="2.5" fill="#e0e5ec"/></svg>
-    </div>
-    <div class="logo-item">
-      <svg viewBox="0 0 130 40" fill="none"><rect x="6" y="6" width="28" height="28" rx="6" fill="none" stroke="#c8d0da" stroke-width="3"/><rect x="42" y="12" width="46" height="6" rx="3" fill="#c8d0da"/><rect x="42" y="22" width="34" height="5" rx="2.5" fill="#e0e5ec"/></svg>
-    </div>
-  </div>
 </section>
 
 <!-- ===== STATS ===== -->
@@ -920,7 +1068,7 @@
       <div class="stat-label">Avg New Revenue</div>
     </div>
     <div class="stat-item">
-      <div class="stat-number">10<span class="accent">+</span></div>
+      <div class="stat-number">15<span class="accent">+</span></div>
       <div class="stat-label">Staff Hrs Reclaimed / Wk</div>
     </div>
     <div class="stat-item">
@@ -934,42 +1082,49 @@
   </div>
 </section>
 
-<!-- ===== BEFORE / AFTER ===== -->
+<!-- ===== THE REAL COST ===== -->
 <section class="ba-section">
   <div class="container">
     <div class="section-label">The Real Cost</div>
     <div class="section-title">What Your Board Doesn't See</div>
     <div class="section-sub">Most districts don't realize how much their current facility process is costing them in lost revenue, liability risk, and staff time.</div>
 
-    <div class="ba-grid">
-      <div class="ba-col ba-col--before">
-        <h3><span>&#x2718;</span> What's Happening Now</h3>
-        <ul>
-          <li><span class="icon">&#x2718;</span> Your team spends 10+ hours/week managing rentals through email, paper, and phone calls</li>
-          <li><span class="icon">&#x2718;</span> Scheduling conflicts surface at the worst time - after a community group shows up</li>
-          <li><span class="icon">&#x2718;</span> Liability exposure from untracked insurance certificates and unsigned agreements</li>
-          <li><span class="icon">&#x2718;</span> No clean data to show the board on facility revenue or utilization rates</li>
-          <li><span class="icon">&#x2718;</span> Community organizations go elsewhere because your booking process is too frustrating</li>
-          <li><span class="icon">&#x2718;</span> Revenue potential goes unreported and unrecognized at budget time</li>
-        </ul>
+    <div class="cost-grid">
+      <div class="cost-card">
+        <div class="cost-before">15+ hrs/week</div>
+        <div class="cost-arrow">&#8594;</div>
+        <div class="cost-after">&lt; 2 hrs/week</div>
+        <div class="cost-label">Staff time on facility rentals</div>
       </div>
-
-      <div class="ba-arrow">
-        <div class="ba-arrow-circle">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </div>
+      <div class="cost-card">
+        <div class="cost-before">Emails &amp; paper</div>
+        <div class="cost-arrow">&#8594;</div>
+        <div class="cost-after">One live calendar</div>
+        <div class="cost-label">Scheduling &amp; conflict prevention</div>
       </div>
-
-      <div class="ba-col ba-col--after">
-        <h3><span>&#x2714;</span> With PracticePlan</h3>
-        <ul>
-          <li><span class="icon">&#x2714;</span> Staff time on rentals drops to under 2 hours/week - no new hires needed</li>
-          <li><span class="icon">&#x2714;</span> Live calendar eliminates conflicts before they happen</li>
-          <li><span class="icon">&#x2714;</span> Insurance, waivers, and agreements collected digitally before any booking is confirmed</li>
-          <li><span class="icon">&#x2714;</span> Board-ready dashboards showing revenue by facility, month, and renter type</li>
-          <li><span class="icon">&#x2714;</span> Community books online 24/7 - better access, better relationships</li>
-          <li><span class="icon">&#x2714;</span> New non-tax revenue line item you can present at your next board meeting</li>
-        </ul>
+      <div class="cost-card">
+        <div class="cost-before">Untracked</div>
+        <div class="cost-arrow">&#8594;</div>
+        <div class="cost-after">100% verified</div>
+        <div class="cost-label">Insurance &amp; liability compliance</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-before">No data</div>
+        <div class="cost-arrow">&#8594;</div>
+        <div class="cost-after">Board-ready reports</div>
+        <div class="cost-label">Facility revenue &amp; utilization</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-before">Phone tag</div>
+        <div class="cost-arrow">&#8594;</div>
+        <div class="cost-after">24/7 online booking</div>
+        <div class="cost-label">Community access to your spaces</div>
+      </div>
+      <div class="cost-card">
+        <div class="cost-before">$0 reported</div>
+        <div class="cost-arrow">&#8594;</div>
+        <div class="cost-after">New budget line item</div>
+        <div class="cost-label">Non-tax revenue at board meetings</div>
       </div>
     </div>
   </div>
@@ -1114,66 +1269,80 @@
 <section class="how-section">
   <div class="container">
     <div class="section-label">Implementation</div>
-    <div class="section-title">Your Team Doesn't Build This.<br>We Do.</div>
-    <div class="section-sub">Minimal lift from your staff. No IT projects. No lengthy onboarding. We get you live in days.</div>
+    <div class="section-title">Live in Days, Not Months</div>
 
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>We Configure Everything</h3>
-        <p>We load your facilities, pricing, rules, and availability. Your team just reviews and gives the green light.</p>
+    <div class="steps-timeline">
+      <div class="timeline-step">
+        <div class="timeline-icon">&#9881;</div>
+        <div class="timeline-tag">Day 1</div>
+        <h3>We Set It Up</h3>
+        <p>We load your facilities, pricing, and rules. Your team just reviews.</p>
       </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>Community Starts Booking</h3>
-        <p>Organizations browse, request, sign agreements, and pay online. Your front office stops fielding those calls.</p>
+      <div class="timeline-step">
+        <div class="timeline-icon">&#127760;</div>
+        <div class="timeline-tag">Day 3</div>
+        <h3>Community Books Online</h3>
+        <p>Organizations browse, request, sign, and pay. No more phone tag.</p>
       </div>
-      <div class="step">
-        <div class="step-num">3</div>
+      <div class="timeline-step">
+        <div class="timeline-icon">&#9889;</div>
+        <div class="timeline-tag">Day 5+</div>
         <h3>Revenue Flows In</h3>
-        <p>Approve bookings from a single dashboard. Revenue, insurance, and compliance tracked and reportable automatically.</p>
+        <p>Approve from one dashboard. Revenue and compliance tracked automatically.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== FEATURES ===== -->
+<!-- ===== WHY SUPERINTENDENTS CHOOSE PRACTICEPLAN ===== -->
 <section class="features-section">
   <div class="container">
     <div class="section-label">Why Superintendents Choose PracticePlan</div>
     <div class="section-title">Revenue. Compliance. Community.<br>All Handled.</div>
     <div class="section-sub">The things that matter at your level - built into every part of the platform.</div>
 
-    <div class="features-grid">
-      <div class="feature-card">
-        <span class="feature-icon">&#128200;</span>
-        <h3>Board-Ready Reporting</h3>
-        <p>Real-time dashboards showing revenue by facility, month, and renter type. Export reports your CFO and board will actually use.</p>
-      </div>
-      <div class="feature-card">
-        <span class="feature-icon">&#128179;</span>
+    <div class="bento-grid">
+      <div class="bento-card bento-accent">
+        <div class="bento-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
         <h3>Non-Tax Revenue Stream</h3>
-        <p>Collect rental fees, deposits, and insurance payments online. A new budget line item that doesn't require voter approval.</p>
+        <p>Collect rental fees, deposits, and insurance payments online. A new budget line item - no voter approval required.</p>
       </div>
-      <div class="feature-card">
-        <span class="feature-icon">&#128196;</span>
+      <div class="bento-card bento-glass">
+        <div class="bento-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-6"/></svg>
+        </div>
+        <h3>Board-Ready Reporting</h3>
+        <p>Real-time dashboards by facility, month, and renter type. Reports your CFO will actually use.</p>
+      </div>
+      <div class="bento-card bento-glass">
+        <div class="bento-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
         <h3>Liability Protection</h3>
-        <p>Insurance certificates, liability waivers, and rental agreements collected digitally before any booking is confirmed. Full audit trail.</p>
+        <p>Insurance, waivers, and agreements collected digitally before any booking is confirmed. Full audit trail.</p>
       </div>
-      <div class="feature-card">
-        <span class="feature-icon">&#128197;</span>
+      <div class="bento-card bento-glass">
+        <div class="bento-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
         <h3>Zero Scheduling Conflicts</h3>
-        <p>One live calendar across every facility. Internal events, athletics, rentals, and maintenance all visible. No surprises.</p>
+        <p>One live calendar across every facility. Athletics, rentals, and maintenance all visible. No surprises.</p>
       </div>
-      <div class="feature-card">
-        <span class="feature-icon">&#128101;</span>
-        <h3>Stronger Community Access</h3>
-        <p>Community organizations book online 24/7. Better access to your spaces builds goodwill and strengthens district-community relationships.</p>
+      <div class="bento-card bento-glass">
+        <div class="bento-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Community Access, 24/7</h3>
+        <p>Organizations book online anytime. Better access builds goodwill and strengthens district relationships.</p>
       </div>
-      <div class="feature-card">
-        <span class="feature-icon">&#128276;</span>
+      <div class="bento-card bento-glass">
+        <div class="bento-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
+        </div>
         <h3>No Added Headcount</h3>
-        <p>Automated notifications, approvals, and payment processing mean your existing staff handles rentals in a fraction of the time.</p>
+        <p>Automated approvals, notifications, and payments mean your existing staff handles everything in a fraction of the time.</p>
       </div>
     </div>
   </div>
@@ -1212,15 +1381,82 @@
   </div>
 </section>
 
-<!-- ===== TESTIMONIAL ===== -->
+<!-- ===== TESTIMONIALS ===== -->
 <section class="testimonial-section">
-  <div class="testimonial-card">
-    <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-    <div class="testimonial-quote">
-      We presented PracticePlan's revenue projections at our March board meeting and got immediate approval. Within 90 days we had a new non-tax revenue stream running - and our facilities team didn't skip a beat. It's one of the easiest wins I've brought to the board.
+  <div class="testimonial-section-label">What District Leaders Are Saying</div>
+  <div class="testimonial-carousel" id="testimonialCarousel">
+    <div class="testimonial-slide active">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          PracticePlan has increased the <strong>effectiveness, efficiency,</strong> and <strong>profitability</strong> of Lovejoy's facilities and rentals.
+        </div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">Katie Kordel</div>
+        <div class="testimonial-role">Superintendent</div>
+      </div>
     </div>
-    <div class="testimonial-author">Superintendent</div>
-    <div class="testimonial-role">K-12 District, Texas</div>
+    <div class="testimonial-slide">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          PracticePlan has been a game-changer for Lake Dallas ISD. PracticePlan serves as our <strong>easy-to-use</strong>, customizable, and <strong>efficient</strong> property manager streamlining every step of the process. It's improved our internal and external facility coordination and keeps everyone informed and aligned.
+        </div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">John Modica</div>
+        <div class="testimonial-role">Chief Operations Officer</div>
+      </div>
+    </div>
+    <div class="testimonial-slide">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          Before PracticePlan, our facility rental process was chaotic. Now, that chaos is gone. PracticePlan has eliminated the time we spent manually managing bookings and works seamlessly to ensure we get paid, verify insurance documents are current, and guarantee we never double-book a facility.
+        </div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">Tim Wagner</div>
+        <div class="testimonial-role">Executive Director of Business &amp; Operations</div>
+      </div>
+    </div>
+    <div class="testimonial-slide">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          We began using PracticePlan as a way to <strong>streamline</strong> our processes for facility use. It has helped us reduce the steps involved in reserving our facilities, allowed us to have a calendar where all reservations are in one place. We are <strong>very glad</strong> we made the change.
+        </div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">Trent Hamilton</div>
+        <div class="testimonial-role">Chief Operations Officer</div>
+      </div>
+    </div>
+    <div class="testimonial-slide">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          The platform was user-friendly, cost-effective, and the Account Manager laid out a detailed plan for implementation within our district. PracticePlan has helped our Finance and Operations Divisions align our efforts to ensure the district's facility usage policies are not compromised.
+        </div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">Patrick Greer</div>
+        <div class="testimonial-role">Chief Operations Officer</div>
+      </div>
+    </div>
+    <div class="testimonial-slide">
+      <div class="testimonial-card">
+        <div class="testimonial-quote">
+          Kaufman ISD was looking for a way to organize, synchronize, and monetize the use of our facilities. PracticePlan has been successful in other districts and we wanted to work with a company that could help us <strong>replicate that success</strong> here in Kaufman. The opportunity to partner with PracticePlan and increase our efficiency and profitability can be a <strong>game changer</strong> for our district!
+        </div>
+        <div class="testimonial-divider"></div>
+        <div class="testimonial-author">Dr. Jeff Roberts</div>
+        <div class="testimonial-role">Assistant Superintendent</div>
+      </div>
+    </div>
+  </div>
+  <div class="carousel-nav">
+    <button class="carousel-arrow" onclick="goToSlide((currentSlide - 1 + totalSlides) % totalSlides)">&#8592;</button>
+    <div class="carousel-dots" id="carouselDots">
+      <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+      <span class="carousel-dot" onclick="goToSlide(1)"></span>
+      <span class="carousel-dot" onclick="goToSlide(2)"></span>
+      <span class="carousel-dot" onclick="goToSlide(3)"></span>
+      <span class="carousel-dot" onclick="goToSlide(4)"></span>
+      <span class="carousel-dot" onclick="goToSlide(5)"></span>
+    </div>
+    <button class="carousel-arrow" onclick="nextSlide()">&#8594;</button>
   </div>
 </section>
 
@@ -1228,17 +1464,17 @@
 <section class="cta-section" id="contact">
   <div class="cta-content">
     <h2>Bring Something Back<br>to Your Board</h2>
-    <p>Get a custom facility revenue report for your district - free, no obligation. We'll show you the numbers so you can make the case.</p>
+    <p>Book a quick demo and we'll show you exactly how PracticePlan works with your facilities. No obligation, no pressure.</p>
 
     <div class="cta-form-card">
       <div id="ctaForm">
         <div class="cta-form-row">
           <input type="email" class="form-input" placeholder="Work Email" id="ctaEmail">
-          <button class="form-submit" onclick="submitCta()">Get My Report</button>
+          <button class="form-submit" onclick="submitCta()">Book a Demo</button>
         </div>
       </div>
       <div class="cta-form-success" id="ctaSuccess">
-        <p>&#10003; Your custom report is on the way.</p>
+        <p>&#10003; We'll be in touch shortly to schedule your demo.</p>
       </div>
       <p class="cta-note">Or visit us at Booth #1344 in the Exhibit Hall for a live walkthrough.</p>
       <a href="mailto:info@practiceplan.io" style="display:inline-block;margin-top:1rem;color:var(--green-light);font-size:0.85rem;font-weight:600;text-decoration:none;">&#9993; info@practiceplan.io</a>
@@ -1319,6 +1555,8 @@ function submitHero() {
   params.append('entry.668821882', org);
   params.append('entry.1564644554', email);
   fetch(formUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() });
+  document.getElementById('heroFormTitle').style.display = 'none';
+  document.getElementById('heroFormSub').style.display = 'none';
   document.getElementById('heroForm').style.display = 'none';
   document.getElementById('heroSuccess').classList.add('show');
 }
@@ -1343,6 +1581,33 @@ function flashBorder(id) {
   el.style.borderColor = '#ff6b6b';
   setTimeout(() => { el.style.borderColor = ''; }, 2000);
 }
+
+// Testimonial Carousel
+var currentSlide = 0;
+var totalSlides = document.querySelectorAll('.testimonial-slide').length;
+var carouselTimer;
+
+function goToSlide(n) {
+  var slides = document.querySelectorAll('.testimonial-slide');
+  var dots = document.querySelectorAll('.carousel-dot');
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide = n % totalSlides;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+  resetTimer();
+}
+
+function nextSlide() {
+  goToSlide(currentSlide + 1);
+}
+
+function resetTimer() {
+  clearInterval(carouselTimer);
+  carouselTimer = setInterval(nextSlide, 6000);
+}
+
+resetTimer();
 
 // ROI Calculator
 function calcROI() {
@@ -1581,6 +1846,11 @@ calcROI();
   }
 })();
 </script>
+
+<!-- Mobile Sticky CTA -->
+<div class="mobile-sticky-cta">
+  <a href="#contact">Book a Demo</a>
+</div>
 
 </body>
 </html>
