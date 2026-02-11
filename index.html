@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PracticePlan - Facility Rental Management Made Simple</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyBpZD0iTGF5ZXJfMiIgZGF0YS1uYW1lPSJMYXllciAyIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMTYuNTggMTc5LjcyIj4KICA8ZGVmcz4KICAgIDxzdHlsZT4KICAgICAgLmNscy0xIHsKICAgICAgICBmaWxsOiAjMDBhODRmOwogICAgICB9CgogICAgICAuY2xzLTEsIC5jbHMtMiB7CiAgICAgICAgc3Ryb2tlOiAjZmZmOwogICAgICAgIHN0cm9rZS1taXRlcmxpbWl0OiAxMDsKICAgICAgICBzdHJva2Utd2lkdGg6IDEuNjJweDsKICAgICAgfQoKICAgICAgLmNscy0yIHsKICAgICAgICBmaWxsOiAjMDA3N2JjOwogICAgICB9CiAgICA8L3N0eWxlPgogIDwvZGVmcz4KICA8ZyBpZD0iTGF5ZXJfMS0yIiBkYXRhLW5hbWU9IkxheWVyIDEiPgogICAgPGc+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMSIgZD0iTTk1LjM1LDg2LjA5bC01MS4wNS0yMS40OWMtMi44LTEuMTgtNS4wNy00LjU5LTUuMDctNy42M3YtMjMuMjZjMC0zLjA0LDIuMjctNC41NCw1LjA3LTMuMzZsNTcuMTQsMjQuMDZjOS41NSw0LjAyLDE0LjMzLDkuMjksMTQuMzMsMTQuNTYsMCw1LjI3LTQuNzgsMTAuNTQtMTQuMzMsMTQuNTZsLTYuMDksMi41NloiLz4KICAgICAgICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Ik03MS40MSwxMzAuNDN2MzEuMTdjMCwzLjA0LTIuMjcsNi40NS01LjA3LDcuNjNsLTIyLjA0LDkuMjhjLTIuOCwxLjE4LTUuMDctLjMzLTUuMDctMy4zNnYtNTkuOTNjMC0zLjA0LDIuMjctNi40NSw1LjA3LTcuNjNsNTcuMTQtMjQuMDZjOS41NS00LjAyLDE0LjMzLTkuMjksMTQuMzMtMTQuNTZ2MjkuNDljMCw4LjI2LTQuNzgsMTUuMzEtMTQuMzMsMTkuMzNsLTMwLjAzLDEyLjY0WiIvPgogICAgICA8L2c+CiAgICAgIDxnPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTU2LjkzLDU2Ljk2TDUuODgsMzUuNDdjLTIuOC0xLjE4LTUuMDctNC41OS01LjA3LTcuNjNWNC41OEMuODEsMS41NCwzLjA4LjAzLDUuODgsMS4yMWw1Ny4xNCwyNC4wNmM5LjU1LDQuMDIsMTQuMzMsOS4yOSwxNC4zMywxNC41NiwwLDUuMjctNC43OCwxMC41NC0xNC4zMywxNC41NmwtNi4wOSwyLjU2WiIvPgogICAgICAgIDxwYXRoIGNsYXNzPSJjbHMtMiIgZD0iTTMyLjk4LDEwMS4zdjMxLjE3YzAsMy4wNC0yLjI3LDYuNDUtNS4wNyw3LjYzbC0yMi4wNCw5LjI4Yy0yLjgsMS4xOC01LjA3LS4zMy01LjA3LTMuMzZ2LTU5LjkzYzAtMy4wNCwyLjI3LTYuNDUsNS4wNy03LjYzbDU3LjE0LTI0LjA2YzkuNTUtNC4wMiwxNC4zMy05LjI5LDE0LjMzLTE0LjU2djI5LjQ5YzAsOC4yNi00Ljc4LDE1LjMxLTE0LjMzLDE5LjMzbC0zMC4wMywxMi42NFoiLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
     --blue: #0076bb;
@@ -616,6 +617,16 @@
     font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6;
     transition: color 0.5s ease;
   }
+  .bento-text { flex: 1; min-width: 0; }
+  .bento-check {
+    width: 22px; height: 22px; min-width: 22px;
+    border-radius: 50%; background: rgba(255,255,255,0.25);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transform: scale(0.5); transition: all 0.35s ease;
+    position: absolute; top: 14px; right: 14px;
+  }
+  .bento-check svg { width: 12px; height: 12px; stroke: white; stroke-width: 3; }
+  .bento-card.highlight .bento-check { opacity: 1; transform: scale(1); }
 
 
   /* Decorative glow on highlighted card */
@@ -752,31 +763,80 @@
     content: ''; position: absolute; inset: 0;
     background: radial-gradient(circle at 30% 50%, rgba(0,168,79,0.15), transparent 60%);
   }
-  .cta-content { position: relative; z-index: 1; max-width: 650px; margin: 0 auto; }
+  .cta-content { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; }
   .cta-content h2 {
     font-size: clamp(1.7rem, 3.5vw, 2.5rem); font-weight: 900;
     color: var(--white); margin-bottom: 0.75rem; letter-spacing: -0.5px;
   }
-  .cta-content p { font-size: 1rem; color: rgba(255,255,255,0.65); margin-bottom: 2rem; line-height: 1.7; }
+  .cta-content > p { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 2.25rem; line-height: 1.7; }
 
-  .cta-form-card {
-    background: rgba(255,255,255,0.08); backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.12); border-radius: 16px;
-    padding: 1.25rem 1.25rem 1rem; max-width: 440px; margin: 0 auto;
+  .cta-card-new {
+    background: rgba(255,255,255,0.95); border-radius: 20px;
+    padding: 2.25rem 2rem 1.75rem; max-width: 480px; margin: 0 auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.1);
+    text-align: center; position: relative;
   }
-  .cta-form-row {
-    display: flex; gap: 0.6rem;
+  .cta-card-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--green); color: white; font-size: 0.65rem; font-weight: 800;
+    letter-spacing: 1.2px; padding: 6px 20px; border-radius: 100px;
+    box-shadow: 0 4px 12px rgba(0,168,79,0.35);
   }
-  .cta-form-row .form-input { flex: 1; }
-  .cta-form-row .form-submit { width: auto; padding: 14px 24px; flex-shrink: 0; margin-top: 0; font-size: 0.85rem; }
+  .cta-card-title {
+    font-size: 1.25rem; font-weight: 800; color: var(--gray-900); margin-bottom: 0.5rem;
+    letter-spacing: -0.3px;
+  }
+  .cta-card-sub {
+    font-size: 0.78rem; color: var(--gray-500); margin-bottom: 1.25rem; line-height: 1.5;
+  }
+  .cta-card-form {
+    display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1rem;
+  }
+  .cta-card-form input {
+    width: 100%; padding: 14px 16px; border-radius: 10px;
+    border: 1.5px solid #e2e5ea; background: #f8f9fb;
+    color: var(--gray-900); font-family: 'Montserrat', sans-serif; font-size: 16px;
+    outline: none; transition: all 0.3s ease; text-align: center;
+  }
+  .cta-card-form input::placeholder { color: #b0b5be; }
+  .cta-card-form input:focus { border-color: var(--blue); background: white; box-shadow: 0 0 0 3px rgba(0,118,187,0.1); }
+  .cta-card-form button {
+    width: 100%; padding: 15px 24px; border-radius: 10px; border: none;
+    background: var(--green); color: white; font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem; font-weight: 800; letter-spacing: 0.3px; cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(0,168,79,0.3);
+  }
+  .cta-card-form button:hover { background: #00c95e; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,168,79,0.4); }
+  .cta-card-divider-line {
+    width: 100%; height: 1px; background: #eef0f3; margin: 0.5rem 0;
+  }
+  .cta-card-booth {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 0.6rem 0 0;
+  }
+  .cta-card-booth-icon {
+    width: 32px; height: 32px; border-radius: 8px; background: rgba(0,118,187,0.08);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .cta-card-booth-icon svg { width: 16px; height: 16px; }
+  .cta-card-booth-text {
+    font-size: 0.72rem; color: var(--gray-500); line-height: 1.4; text-align: left;
+  }
+  .cta-card-booth-text strong { color: var(--gray-900); font-weight: 700; }
+  .cta-card-trust {
+    display: flex; align-items: center; justify-content: center; gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+  .cta-trust-item {
+    display: flex; align-items: center; gap: 5px;
+    font-size: 0.62rem; color: rgba(255,255,255,0.45); font-weight: 600; letter-spacing: 0.3px;
+  }
+  .cta-trust-item svg { width: 14px; height: 14px; opacity: 0.5; }
 
-  .cta-form-success { display: none; text-align: center; padding: 0.5rem 0; }
-  .cta-form-success.show { display: block; }
-  .cta-form-success p { color: var(--green-light); font-weight: 700; font-size: 0.95rem; }
-
-  .cta-note {
-    font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 0.75rem; margin-bottom: 0;
-  }
+  .cta-card-success { display: none; text-align: center; padding: 1rem 0; }
+  .cta-card-success.show { display: block; }
+  .cta-card-success p { color: var(--green); font-weight: 700; font-size: 0.95rem; }
 
   /* ===== FOOTER ===== */
   footer {
@@ -898,14 +958,22 @@
     .features-section { padding: 3rem 1.25rem; }
     .bento-grid { grid-template-columns: 1fr; gap: 0.5rem; }
     .bento-card {
-      padding: 1rem 1.15rem; flex-direction: row; align-items: center; gap: 1rem;
+      padding: 0.85rem 1rem; flex-direction: row; align-items: center; gap: 0.75rem;
+      border-radius: 12px;
     }
     .bento-card .bento-icon {
       width: 36px; height: 36px; min-width: 36px; border-radius: 10px;
       margin-bottom: 0; font-size: 0.9rem;
     }
-    .bento-card h3 { font-size: 0.88rem; margin-bottom: 0.15rem; }
-    .bento-card p { font-size: 0.72rem; line-height: 1.45; }
+    .bento-card .bento-icon svg { width: 16px; height: 16px; }
+    .bento-card h3 { font-size: 0.85rem; margin-bottom: 0.1rem; }
+    .bento-card p { font-size: 0.7rem; line-height: 1.4; }
+    .bento-card .bento-check {
+      position: static; width: 18px; height: 18px; min-width: 18px;
+      margin-left: auto; flex-shrink: 0;
+    }
+    .bento-card .bento-check svg { width: 9px; height: 9px; }
+    .bento-card.highlight::after { display: none; }
 
     /* ROI */
     .roi-section { padding: 3rem 1.25rem; }
@@ -923,7 +991,8 @@
 
     /* CTA */
     .cta-section { padding: 3rem 1.25rem; }
-    .cta-form-card { padding: 1rem 1rem 0.75rem; }
+    .cta-card-new { padding: 1.75rem 1.5rem 1.5rem; }
+    .cta-card-trust { gap: 0.75rem; flex-wrap: wrap; }
     .cta-form-row { flex-direction: column; }
     .cta-form-row .form-submit { width: 100%; }
     .cta-content h2 { font-size: 1.6rem; }
@@ -1152,7 +1221,7 @@
     <div class="section-label">The Real Cost</div>
     <div class="section-title">What Your Board Doesn't See</div>
     <div id="costPunchlineWrap" style="max-height:0; overflow:hidden; transition: max-height 0.6s ease; text-align:center; margin-top:-0.6rem;">
-      <div id="costPunchline" style="opacity:0; transition: opacity 0.8s ease; font-size:1.1rem; font-weight:800; color:var(--green); line-height:1; padding-bottom:0.75rem; border-bottom:1px solid var(--gray-100); margin-bottom:0.25rem; display:inline-block;">Until now.</div>
+      <div id="costPunchline" style="opacity:0; transition: opacity 0.8s ease; font-size:1.4rem; font-weight:800; color:var(--gray-900); line-height:1; padding-bottom:0.75rem; display:inline-block;">(Until now.)</div>
     </div>
     <div class="section-sub">Most districts don't realize how much their current facility process is costing them in lost revenue, liability risk, and staff time.</div>
 
@@ -1167,24 +1236,24 @@
         <div class="cost-before">Emails &amp; paper</div>
         <div class="cost-arrow">&#8594;</div>
         <div class="cost-after">One live<br>calendar</div>
-        <div class="cost-label">Scheduling &amp; conflict prevention</div>
+        <div class="cost-label">Scheduling &amp;<br>conflict prevention</div>
       </div>
       <div class="cost-card">
         <div class="cost-before">Untracked</div>
         <div class="cost-arrow">&#8594;</div>
         <div class="cost-after">100%<br>verified</div>
-        <div class="cost-label">Insurance &amp; liability compliance</div>
+        <div class="cost-label">Insurance &amp;<br>liability compliance</div>
       </div>
       <div class="cost-card">
         <div class="cost-before">No data</div>
         <div class="cost-arrow">&#8594;</div>
-        <div class="cost-after">Board-ready reports</div>
-        <div class="cost-label">Facility revenue &amp; utilization</div>
+        <div class="cost-after">Board-ready<br>reports</div>
+        <div class="cost-label">Facility revenue<br>&amp; utilization</div>
       </div>
       <div class="cost-card">
         <div class="cost-before">Phone tag</div>
         <div class="cost-arrow">&#8594;</div>
-        <div class="cost-after">Self-service booking</div>
+        <div class="cost-after">Self-service<br>booking</div>
         <div class="cost-label">Community access<br>to your spaces</div>
       </div>
       <div class="cost-card">
@@ -1202,7 +1271,7 @@
   <div class="container">
     <div class="section-label">See It In Action</div>
     <div class="section-title">A Dashboard Your Team<br>Will Actually Use</div>
-    <div class="section-sub">Revenue tracking, booking management, and compliance - all in one place your staff can run without training.</div>
+    <div class="section-sub">Revenue tracking, booking management, and compliance - all in one place that syncs in real-time with your district calendar systems.</div>
 
     <div class="demo-frame">
       <div class="demo-bar">
@@ -1271,16 +1340,20 @@
         </div>
         <div class="mock-grid">
           <div class="mock-stat-card">
-            <div class="mock-stat-label">This Month Revenue</div>
+            <div class="mock-stat-label">Total Revenue</div>
             <div class="mock-stat-value">$<span class="g" id="animRevenue">0</span></div>
           </div>
           <div class="mock-stat-card">
-            <div class="mock-stat-label">Active Bookings</div>
+            <div class="mock-stat-label">Total Reservations</div>
             <div class="mock-stat-value" id="animBookings">0</div>
           </div>
           <div class="mock-stat-card">
-            <div class="mock-stat-label">Pending Requests</div>
-            <div class="mock-stat-value" id="animRequests">0</div>
+            <div class="mock-stat-label">Facility Reviews</div>
+            <div class="mock-stat-value" style="display:flex;align-items:center;gap:4px;justify-content:flex-start;">
+              <span id="animStars" style="font-size:0.65rem;letter-spacing:1px;color:#f0b429;">★★★★★</span>
+              <span id="animRating" class="g" style="font-size:0.85rem;">5.0</span>
+              <span id="animReviewCount" style="font-size:0.5rem;color:rgba(0,0,0,0.35);font-weight:600;">(1)</span>
+            </div>
           </div>
         </div>
 
@@ -1323,9 +1396,11 @@
         </div>
 
         <!-- Activity feed below calendar -->
-        <div id="mockToast" style="margin-top:0.75rem;background:rgba(0,168,79,0.1);border:1px solid rgba(0,168,79,0.25);border-radius:10px;padding:10px 16px;display:flex;align-items:center;gap:10px;opacity:0;transition:all 0.4s ease;">
+        <div id="mockToast" style="margin-top:0.75rem;background:rgba(0,168,79,0.08);border:1px solid rgba(0,168,79,0.2);border-radius:10px;padding:10px 14px;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity 0.5s ease-in;">
           <span id="toastDot" style="color:#00c95e;font-size:0.55rem;">&#9679;</span>
-          <span id="toastText" style="color:rgba(0,0,0,0.7);font-size:0.78rem;font-weight:600;letter-spacing:0.2px;">New booking request</span>
+          <span id="toastText" style="color:rgba(0,0,0,0.7);font-size:0.65rem;font-weight:600;letter-spacing:0.2px;flex:1;">New booking request</span>
+          <span id="toastApprove" style="background:var(--green);color:white;font-size:0.45rem;font-weight:800;padding:4px 8px;border-radius:6px;cursor:pointer;letter-spacing:0.5px;transition:all 0.3s ease;white-space:nowrap;">APPROVE</span>
+          <span id="toastDecline" style="background:rgba(192,57,43,0.15);color:#c0392b;font-size:0.45rem;font-weight:800;padding:4px 8px;border-radius:6px;cursor:pointer;letter-spacing:0.5px;transition:all 0.3s ease;white-space:nowrap;">DECLINE</span>
         </div>
       </div>
     </div>
@@ -1336,7 +1411,7 @@
 <section class="how-section">
   <div class="container">
     <div class="section-label">Implementation</div>
-    <div class="section-title">Live in Days, Not Months</div>
+    <div class="section-title">Go Live in Days, Not Months</div>
 
     <div class="steps-timeline">
       <div class="timeline-step">
@@ -1366,50 +1441,56 @@
   <div class="container">
     <div class="section-label">Why Superintendents Choose PracticePlan</div>
     <div class="section-title">Revenue. Compliance. Community.<br>All Handled.</div>
-    <div class="section-sub">The things that matter at your level - built into every part of the platform.</div>
+    <div class="section-sub">The things that matter the most at your level - seamlessly built into every part of this zero-cost platform.</div>
 
     <div class="bento-grid">
       <div class="bento-card bento-glass">
         <div class="bento-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
-        <h3>Non-Tax Revenue Stream</h3>
-        <p>Collect rental fees, deposits, and insurance payments online. A new budget line item - no voter approval required.</p>
+        <div class="bento-text"><h3>Non-Tax Revenue Stream</h3>
+        <p>Collect rental fees, deposits, and insurance payments online. A new budget line item - no voter approval required.</p></div>
+        <div class="bento-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></div>
       </div>
       <div class="bento-card bento-glass">
         <div class="bento-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 6-6"/></svg>
         </div>
-        <h3>Board-Ready Reporting</h3>
-        <p>Real-time dashboards by facility, month, and renter type. Reports your CFO will actually use.</p>
+        <div class="bento-text"><h3>Board-Ready Reporting</h3>
+        <p>Real-time dashboards by facility, month, and renter type. Reports your CFO will actually use.</p></div>
+        <div class="bento-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></div>
       </div>
       <div class="bento-card bento-glass">
         <div class="bento-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
         </div>
-        <h3>Liability Protection</h3>
-        <p>Insurance, waivers, and agreements collected digitally before any booking is confirmed. Full audit trail.</p>
+        <div class="bento-text"><h3>Liability Protection</h3>
+        <p>Insurance, waivers, and agreements collected digitally before any booking is confirmed. Full audit trail.</p></div>
+        <div class="bento-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></div>
       </div>
       <div class="bento-card bento-glass">
         <div class="bento-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         </div>
-        <h3>Zero Scheduling Conflicts</h3>
-        <p>One live calendar across every facility. Athletics, rentals, and maintenance all visible. No surprises.</p>
+        <div class="bento-text"><h3>Scheduling Conflicts</h3>
+        <p>One live calendar across every facility. Athletics, rentals, and maintenance all visible. No surprises.</p></div>
+        <div class="bento-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></div>
       </div>
       <div class="bento-card bento-glass">
         <div class="bento-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3>Self-Service Booking Portal</h3>
-        <p>Community organizations browse availability, submit requests, and pay online - anytime, from any device.</p>
+        <div class="bento-text"><h3>Self-Service Booking Portal</h3>
+        <p>Community organizations browse availability, submit requests, and pay online - anytime, from any device.</p></div>
+        <div class="bento-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></div>
       </div>
       <div class="bento-card bento-glass">
         <div class="bento-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>
         </div>
-        <h3>No Added Headcount</h3>
-        <p>Automated approvals, notifications, and payments mean your existing staff handles everything in a fraction of the time.</p>
+        <div class="bento-text"><h3>New Hires Needed</h3>
+        <p>Automated approvals, notifications, and payments mean your existing staff handles everything in a fraction of the time.</p></div>
+        <div class="bento-check"><svg viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12"/></svg></div>
       </div>
     </div>
   </div>
@@ -1420,7 +1501,7 @@
   <div class="container">
     <div class="section-label">Revenue Calculator</div>
     <div class="section-title">How Much Non-Tax Revenue<br>Is Your District Missing?</div>
-    <div class="section-sub">Drag the sliders to match your district. These are the numbers you take to your next board meeting.</div>
+    <div class="section-sub">Drag the sliders to match your district. These are the numbers you should take to your next board meeting.</div>
 
     <div class="roi-card">
       <div class="roi-body">
@@ -1530,20 +1611,49 @@
 <!-- ===== BOTTOM CTA ===== -->
 <section class="cta-section" id="contact">
   <div class="cta-content">
-    <h2>Bring Something Real Back<br>to Your Board</h2>
-    <p>Book a quick demo and we'll show you exactly how PracticePlan works with your facilities. Zero cost to your district, no obligation, no pressure.</p>
+    <h2>Bring Something Real Back to Your Board</h2>
+    <p>See exactly how PracticePlan works with your facilities. Zero cost to your district, no obligation, no pressure.</p>
 
-    <div class="cta-form-card">
-      <div id="ctaForm">
-        <div class="cta-form-row">
-          <input type="email" class="form-input" placeholder="Work Email" id="ctaEmail">
-          <button class="form-submit" onclick="submitCta()">Book a Demo</button>
+    <div class="cta-card-new">
+      <div class="cta-card-badge">FREE DEMO</div>
+      <div class="cta-card-title">Book Your Walkthrough</div>
+      <div class="cta-card-sub">Takes 30 minutes. We'll show you proven results from school districts just like yours.</div>
+
+      <div id="ctaForm2">
+        <div class="cta-card-form">
+          <input type="email" placeholder="Work Email" id="ctaEmail">
+          <button onclick="submitCta()">Book a Demo</button>
         </div>
       </div>
-      <div class="cta-form-success" id="ctaSuccess">
+      <div class="cta-card-success" id="ctaSuccess">
         <p>&#10003; We'll be in touch shortly to schedule your demo.</p>
       </div>
-      <p class="cta-note">Or visit us at Booth #1344 in the Exhibit Hall for a live walkthrough.</p>
+
+      <div class="cta-card-divider-line"></div>
+
+      <div class="cta-card-booth">
+        <div class="cta-card-booth-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0076bb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div class="cta-card-booth-text">
+          <strong>Booth #1344</strong> at the AASA National Conference<br>Nashville, TN - Stop by for a live walkthrough
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-card-trust">
+      <span class="cta-trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Zero cost
+      </span>
+      <span class="cta-trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        No obligation
+      </span>
+      <span class="cta-trust-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        30 min
+      </span>
     </div>
   </div>
 </section>
@@ -1600,7 +1710,7 @@
     </g>
   </g>
 </svg></div>
-  <p>Facility Rental Management for K-12 Districts &nbsp;|&nbsp; <a href="https://www.practiceplan.io">practiceplan.io</a><br>AASA NCE 2026 - Booth #1344</p>
+  <p>Facility Rental Management for K-12 Districts &nbsp;|&nbsp; <a href="https://www.practiceplan.io" style="color:rgba(255,255,255,0.25);">practiceplan.io</a><br>AASA NCE 2026 - Booth #1344</p>
   <div class="footer-email">
     <span>Questions? Drop us a line.</span>
     <a href="mailto:info@practiceplan.io">info@practiceplan.io</a>
@@ -1711,7 +1821,7 @@ function submitCta() {
   params.append('entry.668821882', '');
   params.append('entry.1564644554', email);
   fetch(formUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() });
-  document.getElementById('ctaForm').style.display = 'none';
+  document.getElementById('ctaForm2').style.display = 'none';
   document.getElementById('ctaSuccess').classList.add('show');
 }
 
@@ -1789,12 +1899,33 @@ calcROI();
   observer.observe(document.getElementById('demoContent'));
 
   function runDashboardAnimation() {
-    var revenue = 0, bookings = 0, requests = 0;
+    var revenue = 600, bookings = 2;
+    var ratings = [5]; // Start with 1 five-star review
     var revenueEl = document.getElementById('animRevenue');
     var bookingsEl = document.getElementById('animBookings');
-    var requestsEl = document.getElementById('animRequests');
+    var starsEl = document.getElementById('animStars');
+    var ratingEl = document.getElementById('animRating');
+    var reviewCountEl = document.getElementById('animReviewCount');
 
-    var fees = [275, 350, 150, 425, 200, 175, 300, 500, 225, 375];
+    function updateRating(newScore) {
+      ratings.push(newScore);
+      var sum = 0;
+      for (var i = 0; i < ratings.length; i++) sum += ratings[i];
+      var avg = sum / ratings.length;
+      var rounded = Math.round(avg * 10) / 10;
+      ratingEl.textContent = rounded.toFixed(1);
+      reviewCountEl.textContent = '(' + ratings.length + ')';
+      var fullStars = Math.floor(rounded);
+      var halfStar = (rounded - fullStars) >= 0.5;
+      var starStr = '';
+      for (var s = 0; s < fullStars; s++) starStr += '★';
+      if (halfStar) { starStr += '★'; fullStars++; }
+      for (var e = fullStars + (halfStar ? 0 : 0); e < 5; e++) starStr += '☆';
+      starsEl.textContent = starStr;
+      glowCard(ratingEl);
+    }
+
+    var fees = [450, 875, 1250, 550, 975, 650, 1100, 500, 825, 750, 1200, 475, 950, 600, 1050, 700, 525, 1150, 850, 575];
     var feeIdx = 0;
 
     // === Revenue roller ===
@@ -1837,8 +1968,32 @@ calcROI();
       (function(c, i) { setTimeout(function() { c.classList.add('visible'); }, 300 + i * 300); })(cards[ci], ci);
     }
 
+    // Set initial display values
+    setRevenue(600);
+    bookingsEl.textContent = '2';
+
     // === Calendar days + event data ===
     var allDays = Array.prototype.slice.call(document.querySelectorAll('#animCalendar .mock-day'));
+
+    // Place 2 initial static bookings on the calendar
+    (function() {
+      var day3 = allDays[2]; // day 3
+      var day8 = allDays[8]; // day 9
+      if (day3) {
+        var b1 = document.createElement('div');
+        b1.className = 'ev-block ev-blue visible';
+        b1.textContent = 'PP - Youth Basketball';
+        b1.setAttribute('data-time', '6-8 PM');
+        day3.appendChild(b1);
+      }
+      if (day8) {
+        var b2 = document.createElement('div');
+        b2.className = 'ev-block ev-green visible';
+        b2.textContent = 'PP - Field Rental';
+        b2.setAttribute('data-time', '9-11 AM');
+        day8.appendChild(b2);
+      }
+    })();
 
     // Booking event templates - name, color, time
     var eventPool = [
@@ -1869,14 +2024,52 @@ calcROI();
     }
 
     // Toast
-    function showToast(msg) {
+    var toastQueue = [];
+    var toastBusy = false;
+
+    function showToast(msg, onApprove) {
+      toastQueue.push({ msg: msg, onApprove: onApprove });
+      if (!toastBusy) processToastQueue();
+    }
+
+    function processToastQueue() {
+      if (toastQueue.length === 0) { toastBusy = false; return; }
+      toastBusy = true;
+      var item = toastQueue.shift();
       var toast = document.getElementById('mockToast');
       var dot = document.getElementById('toastDot');
       var text = document.getElementById('toastText');
-      text.textContent = msg;
+      var approveBtn = document.getElementById('toastApprove');
+      var declineBtn = document.getElementById('toastDecline');
+
+      // Reset state
+      approveBtn.textContent = 'APPROVE';
+      approveBtn.style.background = 'var(--green)';
+      approveBtn.style.padding = '4px 8px';
+      declineBtn.style.opacity = '1';
+      text.textContent = item.msg;
       dot.style.animation = 'toastPulse 1.5s ease-in-out infinite';
       toast.style.opacity = '1';
-      setTimeout(function() { toast.style.opacity = '0'; dot.style.animation = ''; }, 2800);
+
+      // After 1.2s, animate the approve button
+      setTimeout(function() {
+        approveBtn.style.background = '#00c95e';
+        approveBtn.textContent = '✓ APPROVED';
+        approveBtn.style.padding = '4px 10px';
+        declineBtn.style.opacity = '0.3';
+
+        // Trigger the calendar add + revenue after approve
+        if (item.onApprove) {
+          setTimeout(function() { item.onApprove(); }, 300);
+        }
+      }, 1400);
+
+      // Fade out toast
+      setTimeout(function() {
+        toast.style.opacity = '0';
+        dot.style.animation = '';
+        setTimeout(function() { processToastQueue(); }, 600);
+      }, 3800);
     }
 
     // Is this a PP (PracticePlan revenue) booking?
@@ -1884,44 +2077,45 @@ calcROI();
 
     // === Add an event block to a day ===
     function addEventToDay(dayEl, ev) {
-      var block = document.createElement('div');
-      block.className = 'ev-block ev-' + ev.color;
-      block.textContent = ev.name;
-      block.setAttribute('data-time', ev.time);
-      dayEl.appendChild(block);
+      // Show toast first, calendar add happens on approve
+      var toastMsg = isPPEvent(ev) ? 'New request: ' + ev.name.replace('PP - ', '') + ' - ' + ev.time : ev.name + ' - ' + ev.time;
 
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() { block.classList.add('visible'); });
-      });
-
-      // Checkmark
-      setTimeout(function() { dayEl.classList.add('booked'); }, 300);
-      setTimeout(function() { dayEl.classList.add('check-fade'); }, 3000);
-      setTimeout(function() { dayEl.classList.remove('booked', 'check-fade'); }, 3600);
-
-      // Stats - only PP bookings generate revenue
       var fee = fees[feeIdx % fees.length];
-      if (isPPEvent(ev)) {
-        setTimeout(function() {
-          requests++;
-          requestsEl.textContent = requests;
-          glowCard(requestsEl);
-        }, 400);
-        setTimeout(function() {
-          requests = Math.max(0, requests - 1);
+
+      showToast(toastMsg, function() {
+        // Add block to calendar
+        var block = document.createElement('div');
+        block.className = 'ev-block ev-' + ev.color;
+        block.textContent = ev.name;
+        block.setAttribute('data-time', ev.time);
+        dayEl.appendChild(block);
+
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() { block.classList.add('visible'); });
+        });
+
+        // Checkmark
+        setTimeout(function() { dayEl.classList.add('booked'); }, 200);
+        setTimeout(function() { dayEl.classList.add('check-fade'); }, 2500);
+        setTimeout(function() { dayEl.classList.remove('booked', 'check-fade'); }, 3100);
+
+        // Stats - only PP bookings generate revenue
+        if (isPPEvent(ev)) {
           bookings++;
-          requestsEl.textContent = requests;
           bookingsEl.textContent = bookings;
           glowCard(bookingsEl);
-          setRevenue(revenue + fee);
-          glowCard(revenueEl);
-          feeIdx++;
-        }, 1300);
-      }
-
-      // Toast
-      var toastText = isPPEvent(ev) ? 'New booking: ' + ev.name.replace('PP - ', '') + ' - ' + ev.time : ev.name + ' - ' + ev.time;
-      setTimeout(function() { showToast(toastText); }, 200);
+          setTimeout(function() {
+            setRevenue(revenue + fee);
+            glowCard(revenueEl);
+            feeIdx++;
+            // Only ~40% of bookings leave a review
+            if (Math.random() < 0.4) {
+              var score = (Math.random() < 0.7) ? 5 : 4;
+              updateRating(score);
+            }
+          }, 600);
+        }
+      });
     }
 
     // How many event blocks does a day currently have?
