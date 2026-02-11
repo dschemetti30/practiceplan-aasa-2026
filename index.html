@@ -34,7 +34,7 @@
 
   /* ===== CONFERENCE TOP BAR ===== */
   .conf-bar {
-    background: var(--green);
+    background: var(--blue);
     color: var(--white);
     text-align: center;
     padding: 10px 1rem;
@@ -50,7 +50,7 @@
     flex-wrap: wrap;
   }
   .conf-bar .booth-tag {
-    background: rgba(0,0,0,0.18);
+    background: rgba(255,255,255,0.15);
     border-radius: 100px;
     padding: 4px 16px;
     font-size: 0.78rem;
@@ -58,7 +58,7 @@
   }
   .conf-bar .live-dot {
     width: 8px; height: 8px;
-    background: var(--white);
+    background: var(--green-light);
     border-radius: 50%;
     display: inline-block;
     animation: pulse 2s ease-in-out infinite;
@@ -190,7 +190,7 @@
     width: 100%; padding: 14px 16px; border-radius: 10px;
     border: 1px solid rgba(255,255,255,0.12);
     background: rgba(255,255,255,0.06);
-    color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.88rem;
+    color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 16px;
     outline: none; transition: all 0.3s ease;
   }
   .form-input::placeholder { color: rgba(255,255,255,0.3); }
@@ -244,7 +244,7 @@
   .stats-banner { background: var(--off-white); padding: 2.5rem 2rem; }
   .stats-grid {
     max-width: 1100px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem;
   }
   .stat-item {
     text-align: center;
@@ -287,18 +287,36 @@
     background: #f8f9fa; border-radius: 12px; padding: 1.5rem 1.25rem;
     text-align: center; border: 1px solid rgba(0,0,0,0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
   }
   .cost-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
   .cost-before {
-    font-size: 0.82rem; font-weight: 600; color: #c0392b; opacity: 0.8;
-    text-decoration: line-through; text-decoration-color: rgba(192,57,43,0.4);
-    margin-bottom: 0.4rem;
+    font-size: 1rem; font-weight: 700; color: #c0392b;
+    margin-bottom: 0.4rem; position: relative; display: inline-block;
+    transition: font-size 0.6s ease, opacity 0.6s ease;
   }
-  .cost-arrow { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 0.4rem; }
+  .cost-before::after {
+    content: ''; position: absolute; left: -4px; top: 50%;
+    width: 0; height: 2px; background: #c0392b;
+    transition: width 0.6s ease;
+  }
+  .cost-card.struck .cost-before::after { width: calc(100% + 8px); }
+  .cost-card.struck .cost-before { font-size: 0.78rem; opacity: 0.5; }
+  .cost-arrow { font-size: 0.85rem; color: var(--gray-400); margin-bottom: 0.4rem; opacity: 0; transition: opacity 0.5s ease; }
+  .cost-card.revealed .cost-arrow { opacity: 1; }
   .cost-after {
     font-size: 1.05rem; font-weight: 800; color: var(--green); margin-bottom: 0.75rem;
+    opacity: 0; transform: translateY(10px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
-  .cost-label { font-size: 0.72rem; color: var(--gray-500); line-height: 1.4; text-transform: uppercase; letter-spacing: 0.5px; }
+  .cost-card.revealed .cost-after { opacity: 1; transform: translateY(0); }
+  .cost-label {
+    font-size: 0.72rem; color: var(--gray-500); line-height: 1.4;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.7s ease 0.15s, transform 0.7s ease 0.15s;
+  }
+  .cost-card.revealed .cost-label { opacity: 1; transform: translateY(0); }
 
   .ba-grid {
     display: grid; grid-template-columns: 1fr 60px 1fr; gap: 0;
@@ -563,26 +581,24 @@
   .bento-card {
     border-radius: 16px; padding: 2rem 1.75rem;
     position: relative; overflow: hidden;
-    display: flex; flex-direction: column;
-    transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
+    display: flex; flex-direction: column; cursor: pointer;
+    transition: background 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
   }
-  .bento-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
 
-  /* Glass cards */
-  .bento-glass {
-    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+  /* All cards same base style */
+  .bento-glass, .bento-accent {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
     backdrop-filter: blur(12px);
   }
-  .bento-glass:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
 
-  /* Accent card - green */
-  .bento-accent {
-    background: var(--green); border: none;
+  /* Green highlight - applies to whichever card is active */
+  .bento-card.highlight {
+    background: var(--green); border-color: var(--green);
+    box-shadow: 0 8px 30px rgba(0,168,79,0.3);
   }
-  .bento-accent:hover { background: var(--green-light); }
-  .bento-accent h3 { color: var(--white) !important; }
-  .bento-accent p { color: rgba(255,255,255,0.85) !important; }
-  .bento-accent .bento-icon { background: rgba(255,255,255,0.2) !important; color: var(--white) !important; }
+  .bento-card.highlight h3 { color: var(--white); }
+  .bento-card.highlight p { color: rgba(255,255,255,0.85); }
+  .bento-card.highlight .bento-icon { background: rgba(255,255,255,0.2); color: var(--white); }
 
 
   .bento-icon {
@@ -590,17 +606,20 @@
     background: rgba(255,255,255,0.1);
     display: flex; align-items: center; justify-content: center;
     margin-bottom: 1.25rem; font-size: 1.1rem; color: var(--green-light);
+    transition: background 0.5s ease, color 0.5s ease;
   }
   .bento-card h3 {
     font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem;
+    transition: color 0.5s ease;
   }
   .bento-card p {
     font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.6;
+    transition: color 0.5s ease;
   }
 
 
-  /* Decorative glow on accent card */
-  .bento-accent::after {
+  /* Decorative glow on highlighted card */
+  .bento-card.highlight::after {
     content: ''; position: absolute; top: -30%; right: -20%; width: 60%; height: 80%;
     background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
     pointer-events: none;
@@ -743,7 +762,7 @@
   .cta-form-card {
     background: rgba(255,255,255,0.08); backdrop-filter: blur(20px);
     border: 1px solid rgba(255,255,255,0.12); border-radius: 16px;
-    padding: 2rem; max-width: 440px; margin: 0 auto;
+    padding: 1.25rem 1.25rem 1rem; max-width: 440px; margin: 0 auto;
   }
   .cta-form-row {
     display: flex; gap: 0.6rem;
@@ -756,19 +775,31 @@
   .cta-form-success p { color: var(--green-light); font-weight: 700; font-size: 0.95rem; }
 
   .cta-note {
-    font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 0.75rem;
+    font-size: 0.72rem; color: rgba(255,255,255,0.3); margin-top: 0.75rem; margin-bottom: 0;
   }
 
   /* ===== FOOTER ===== */
   footer {
-    background: var(--gray-900); padding: 2rem 2rem; text-align: center;
+    background: var(--gray-900); padding: 3rem 2rem; text-align: center;
     border-top: 1px solid rgba(255,255,255,0.05);
   }
-  .footer-logo { margin-bottom: 0.5rem; display: flex; align-items: center; justify-content: center; }
-  .footer-logo svg { height: 24px; width: auto; }
+  .footer-logo { margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; }
+  .footer-logo svg { height: 28px; width: auto; }
   footer p { font-size: 0.78rem; color: rgba(255,255,255,0.25); }
-  footer a { color: var(--green-light); text-decoration: none; }
+  footer a { color: var(--blue); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
+  .footer-email {
+    margin-top: 1.5rem; padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; flex-direction: column; align-items: center; gap: 0.35rem;
+  }
+  .footer-email span {
+    font-size: 0.72rem; color: rgba(255,255,255,0.3);
+    font-weight: 500; letter-spacing: 0.3px;
+  }
+  .footer-email a {
+    font-size: 0.88rem; font-weight: 700; color: var(--blue);
+  }
 
   /* ===== RESPONSIVE ===== */
   @media (max-width: 900px) {
@@ -785,17 +816,19 @@
 
   @media (max-width: 768px) {
     /* Conference bar */
-    .conf-bar { flex-direction: column; gap: 6px; padding: 8px 1rem; font-size: 0.72rem; }
-    .conf-bar .booth-tag { font-size: 0.7rem; }
+    .conf-bar { flex-direction: column; gap: 2px; padding: 10px 1rem; font-size: 0.62rem; }
+    .conf-bar > span:first-child { font-size: 0.62rem; }
+    .conf-bar > span:nth-child(2) { font-size: 0.58rem; opacity: 0.7; font-weight: 600; }
+    .conf-bar .booth-tag { font-size: 0.58rem; padding: 3px 12px; margin-top: 2px; }
 
     /* Hero */
-    .hero { padding: 2.5rem 1.25rem; min-height: auto; padding-top: 3rem; padding-bottom: 3rem; }
-    .hero-inner { gap: 2rem; }
+    .hero { padding: 2.5rem 1.25rem; min-height: auto; padding-top: 3.5rem; padding-bottom: 3.5rem; }
+    .hero-inner { gap: 2.5rem; }
     .hero-card { max-width: 100%; padding: 1.5rem; }
-    .hero-badge { font-size: 0.65rem; padding: 6px 14px; letter-spacing: 1.5px; margin-bottom: 1rem; }
-    .hero h1 { font-size: 2rem; letter-spacing: -1px; margin-bottom: 1rem; }
-    .hero .hero-sub { font-size: 0.9rem; margin-bottom: 1.5rem; }
-    .hero-actions { gap: 0.75rem; }
+    .hero-badge { font-size: 0.65rem; padding: 6px 14px; letter-spacing: 1.5px; margin-bottom: 1.25rem; }
+    .hero h1 { font-size: 2rem; letter-spacing: -1px; margin-bottom: 1.25rem; }
+    .hero .hero-sub { font-size: 0.9rem; margin-bottom: 1.75rem; line-height: 1.7; }
+    .hero-actions { gap: 0.85rem; margin-bottom: 0.5rem; }
     .btn { padding: 13px 24px; font-size: 0.82rem; }
 
     /* Hero logo */
@@ -809,10 +842,10 @@
 
     /* Stats */
     .stats-banner { padding: 1.5rem 1rem; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
-    .stat-item { padding: 1rem 0.75rem; }
-    .stat-number { font-size: 1.5rem; }
-    .stat-label { font-size: 0.6rem; letter-spacing: 0.3px; }
+    .stats-grid { grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+    .stat-item { padding: 0.85rem 0.4rem; }
+    .stat-number { font-size: 1.3rem; }
+    .stat-label { font-size: 0.5rem; letter-spacing: 0.3px; }
 
     /* Before/After */
     .ba-section { padding: 3rem 1.25rem; }
@@ -832,23 +865,47 @@
     #mockToast #toastText { font-size: 0.65rem; }
     .mock-logo svg { height: 16px !important; }
 
-    /* How It Works */
+    /* How It Works - compact left-aligned timeline */
     .how-section { padding: 3rem 1.25rem; }
-    .steps-timeline { flex-direction: column; align-items: center; gap: 2rem; }
-    .steps-timeline::before { display: none; }
-    .timeline-step { padding: 0; }
-    .timeline-step h3 { font-size: 0.95rem; }
-    .timeline-step p { font-size: 0.82rem; }
+    .steps-timeline {
+      flex-direction: column; align-items: stretch; gap: 0;
+      padding-top: 0; padding-left: 2.5rem; position: relative;
+      max-width: 400px; margin: 0 auto;
+    }
+    .steps-timeline::before {
+      left: 5px; right: auto; top: 0; bottom: 0;
+      width: 2px; height: 100%;
+      background: linear-gradient(180deg, var(--blue), var(--green));
+      opacity: 0.3;
+    }
+    .timeline-step {
+      text-align: left; padding: 0 0 2rem 0; position: relative;
+    }
+    .timeline-step:last-child { padding-bottom: 0; }
+    .timeline-step::before {
+      content: ''; position: absolute; left: calc(-2.5rem);
+      top: 3px; width: 12px; height: 12px; border-radius: 50%;
+      background: var(--green); border: 3px solid var(--gray-900);
+      z-index: 2;
+    }
+    .timeline-step:first-child::before { background: var(--blue); }
+    .timeline-icon { display: none; }
+    .timeline-tag { margin-bottom: 0.2rem; font-size: 0.52rem; }
+    .timeline-step h3 { font-size: 1rem; margin-bottom: 0.2rem; }
+    .timeline-step p { font-size: 0.8rem; margin: 0; max-width: none; }
 
-    /* Features */
+    /* Features - compact horizontal rows */
     .features-section { padding: 3rem 1.25rem; }
-    .bento-grid { grid-template-columns: 1fr; gap: 0.75rem; }
-    .bento-wide { grid-column: span 1; }
-    .bento-card { padding: 1.5rem 1.25rem; }
-    .bento-card[style*="display:flex"] { flex-direction: column; }
-    .feature-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
-    .bento-card h3 { font-size: 0.9rem; }
-    .bento-card p { font-size: 0.8rem; }
+    .bento-grid { grid-template-columns: 1fr; gap: 0.5rem; }
+    .bento-card {
+      padding: 1rem 1.15rem; flex-direction: row; align-items: center; gap: 1rem;
+    }
+    .bento-card .bento-icon {
+      width: 36px; height: 36px; min-width: 36px; border-radius: 10px;
+      margin-bottom: 0; font-size: 0.9rem;
+    }
+    .bento-card h3 { font-size: 0.88rem; margin-bottom: 0.15rem; }
+    .bento-card p { font-size: 0.72rem; line-height: 1.45; }
 
     /* ROI */
     .roi-section { padding: 3rem 1.25rem; }
@@ -866,7 +923,7 @@
 
     /* CTA */
     .cta-section { padding: 3rem 1.25rem; }
-    .cta-form-card { padding: 1.5rem; }
+    .cta-form-card { padding: 1rem 1rem 0.75rem; }
     .cta-form-row { flex-direction: column; }
     .cta-form-row .form-submit { width: 100%; }
     .cta-content h2 { font-size: 1.6rem; }
@@ -890,15 +947,15 @@
     .hero-card { padding: 1.25rem; }
     .hero-card h3 { font-size: 0.95rem; }
     .hero-card .card-sub { font-size: 0.75rem; }
-    .form-input { padding: 12px 14px; font-size: 0.82rem; }
+    .form-input { padding: 12px 14px; font-size: 16px; }
     .form-submit { padding: 13px; font-size: 0.88rem; }
     .hero-actions { flex-direction: column; align-items: center; }
     .btn { width: 100%; justify-content: center; }
     .hero-inner > div:first-child > div:first-child svg { height: 28px !important; }
 
-    .stats-grid { gap: 0.5rem; }
-    .stat-item { padding: 0.75rem 0.5rem; border-radius: 10px; }
-    .stat-number { font-size: 1.3rem; }
+    .stats-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; }
+    .stat-item { padding: 0.75rem 0.4rem; border-radius: 10px; width: calc(33.33% - 0.35rem); }
+    .stat-number { font-size: 1.2rem; }
 
     .logos-row { gap: 0.5rem; }
     .logo-item { width: 85px; height: 36px; border-radius: 6px; }
@@ -909,10 +966,10 @@
     .mock-stat-label { font-size: 0.4rem; }
     .demo-content { padding: 1rem; min-height: 280px; }
 
-    .timeline-step h3 { font-size: 0.9rem; }
-    .timeline-icon { width: 48px; height: 48px; font-size: 1.2rem; }
+    .timeline-step h3 { font-size: 0.92rem; }
+    .timeline-icon { display: none; }
 
-    .cost-grid { grid-template-columns: 1fr; }
+    .cost-grid { grid-template-columns: 1fr 1fr; }
     .cost-card { padding: 1.25rem 1rem; }
 
     .roi-body { padding: 1.25rem; }
@@ -926,7 +983,7 @@
   }
 
   @media (max-width: 360px) {
-    .conf-bar { font-size: 0.65rem; padding: 6px 0.75rem; }
+    .conf-bar { font-size: 0.58rem; padding: 5px 0.75rem; }
     .hero h1 { font-size: 1.5rem; }
     .section-title { font-size: 1.2rem; }
     .stat-number { font-size: 1.15rem; }
@@ -1068,19 +1125,23 @@
   <div class="stats-grid">
     <div class="stat-item">
       <div class="stat-number">40<span class="accent">%</span></div>
-      <div class="stat-label">Avg New Revenue</div>
+      <div class="stat-label">Avg New<br>Revenue Increase</div>
     </div>
     <div class="stat-item">
       <div class="stat-number">15<span class="accent">+</span></div>
-      <div class="stat-label">Staff Hrs Reclaimed / Wk</div>
+      <div class="stat-label">Staff Hrs<br>Reclaimed / Wk</div>
     </div>
     <div class="stat-item">
       <div class="stat-number">0</div>
-      <div class="stat-label">New Hires Needed</div>
+      <div class="stat-label">New Hires<br>Needed</div>
     </div>
     <div class="stat-item">
       <div class="stat-number">24<span class="accent">/7</span></div>
-      <div class="stat-label">Online Booking Access</div>
+      <div class="stat-label">Online Booking<br>Access</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number"><span class="accent">$</span>0</div>
+      <div class="stat-label">Cost to<br>Your District</div>
     </div>
   </div>
 </section>
@@ -1090,25 +1151,28 @@
   <div class="container">
     <div class="section-label">The Real Cost</div>
     <div class="section-title">What Your Board Doesn't See</div>
+    <div id="costPunchlineWrap" style="max-height:0; overflow:hidden; transition: max-height 0.6s ease; text-align:center; margin-top:-0.6rem;">
+      <div id="costPunchline" style="opacity:0; transition: opacity 0.8s ease; font-size:1.1rem; font-weight:800; color:var(--green); line-height:1; padding-bottom:0.75rem; border-bottom:1px solid var(--gray-100); margin-bottom:0.25rem; display:inline-block;">Until now.</div>
+    </div>
     <div class="section-sub">Most districts don't realize how much their current facility process is costing them in lost revenue, liability risk, and staff time.</div>
 
     <div class="cost-grid">
       <div class="cost-card">
         <div class="cost-before">15+ hrs/week</div>
         <div class="cost-arrow">&#8594;</div>
-        <div class="cost-after">&lt; 2 hrs/week</div>
-        <div class="cost-label">Staff time on facility rentals</div>
+        <div class="cost-after">&lt; 2<br>hrs/week</div>
+        <div class="cost-label">Staff time on<br>facility rentals</div>
       </div>
       <div class="cost-card">
         <div class="cost-before">Emails &amp; paper</div>
         <div class="cost-arrow">&#8594;</div>
-        <div class="cost-after">One live calendar</div>
+        <div class="cost-after">One live<br>calendar</div>
         <div class="cost-label">Scheduling &amp; conflict prevention</div>
       </div>
       <div class="cost-card">
         <div class="cost-before">Untracked</div>
         <div class="cost-arrow">&#8594;</div>
-        <div class="cost-after">100% verified</div>
+        <div class="cost-after">100%<br>verified</div>
         <div class="cost-label">Insurance &amp; liability compliance</div>
       </div>
       <div class="cost-card">
@@ -1121,13 +1185,13 @@
         <div class="cost-before">Phone tag</div>
         <div class="cost-arrow">&#8594;</div>
         <div class="cost-after">Self-service booking</div>
-        <div class="cost-label">Community access to your spaces</div>
+        <div class="cost-label">Community access<br>to your spaces</div>
       </div>
       <div class="cost-card">
         <div class="cost-before">$0 reported</div>
         <div class="cost-arrow">&#8594;</div>
-        <div class="cost-after">New budget line item</div>
-        <div class="cost-label">Non-tax revenue at board meetings</div>
+        <div class="cost-after">New budget<br>line item</div>
+        <div class="cost-label">Non-tax revenue<br>at board meetings</div>
       </div>
     </div>
   </div>
@@ -1137,7 +1201,7 @@
 <section class="demo-section" id="demo">
   <div class="container">
     <div class="section-label">See It In Action</div>
-    <div class="section-title">The Dashboard Your Team<br>Will Actually Use</div>
+    <div class="section-title">A Dashboard Your Team<br>Will Actually Use</div>
     <div class="section-sub">Revenue tracking, booking management, and compliance - all in one place your staff can run without training.</div>
 
     <div class="demo-frame">
@@ -1305,7 +1369,7 @@
     <div class="section-sub">The things that matter at your level - built into every part of the platform.</div>
 
     <div class="bento-grid">
-      <div class="bento-card bento-accent">
+      <div class="bento-card bento-glass">
         <div class="bento-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
@@ -1466,8 +1530,8 @@
 <!-- ===== BOTTOM CTA ===== -->
 <section class="cta-section" id="contact">
   <div class="cta-content">
-    <h2>Bring Something Back<br>to Your Board</h2>
-    <p>Book a quick demo and we'll show you exactly how PracticePlan works with your facilities. No obligation, no pressure.</p>
+    <h2>Bring Something Real Back<br>to Your Board</h2>
+    <p>Book a quick demo and we'll show you exactly how PracticePlan works with your facilities. Zero cost to your district, no obligation, no pressure.</p>
 
     <div class="cta-form-card">
       <div id="ctaForm">
@@ -1480,14 +1544,13 @@
         <p>&#10003; We'll be in touch shortly to schedule your demo.</p>
       </div>
       <p class="cta-note">Or visit us at Booth #1344 in the Exhibit Hall for a live walkthrough.</p>
-      <a href="mailto:info@practiceplan.io" style="display:inline-block;margin-top:1rem;color:var(--green-light);font-size:0.85rem;font-weight:600;text-decoration:none;">&#9993; info@practiceplan.io</a>
     </div>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer>
-  <div class="footer-logo" style="background:rgba(0,0,0,0.3);display:inline-block;padding:8px 14px;border-radius:8px;"><svg style="height:24px;width:auto;" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 396.37 66.7">
+  <div class="footer-logo"><svg style="height:24px;width:auto;" id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 396.37 66.7">
   <defs>
     <style>
       .cls-1, .cls-2 {
@@ -1537,10 +1600,81 @@
     </g>
   </g>
 </svg></div>
-  <p>Facility Rental Management for K-12 Districts &nbsp;|&nbsp; <a href="https://www.practiceplan.io">practiceplan.io</a> &nbsp;|&nbsp; AASA NCE 2026 - Booth #1344</p>
+  <p>Facility Rental Management for K-12 Districts &nbsp;|&nbsp; <a href="https://www.practiceplan.io">practiceplan.io</a><br>AASA NCE 2026 - Booth #1344</p>
+  <div class="footer-email">
+    <span>Questions? Drop us a line.</span>
+    <a href="mailto:info@practiceplan.io">info@practiceplan.io</a>
+  </div>
 </footer>
 
 <script>
+// Feature cards interactive green highlight
+(function() {
+  const allCards = document.querySelectorAll('.bento-card');
+  if (!allCards.length) return;
+
+  function activateCard(card) {
+    allCards.forEach(function(c) { c.classList.remove('highlight'); });
+    card.classList.add('highlight');
+  }
+
+  allCards.forEach(function(card) {
+    card.addEventListener('mouseenter', function() { activateCard(card); });
+    
+    // Track touch - only activate on tap, not scroll
+    var touchStartY = 0;
+    card.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    card.addEventListener('touchend', function(e) {
+      var touchEndY = e.changedTouches[0].clientY;
+      if (Math.abs(touchEndY - touchStartY) < 10) {
+        activateCard(card);
+      }
+    }, { passive: true });
+  });
+
+  // Start with first card highlighted
+  allCards[0].classList.add('highlight');
+})();
+
+// Cost card strike-through animation
+(function() {
+  let costAnimated = false;
+  const costGrid = document.querySelector('.cost-grid');
+  if (!costGrid) return;
+  
+  const costObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !costAnimated) {
+        costAnimated = true;
+        const cards = document.querySelectorAll('.cost-card');
+        cards.forEach(function(card, i) {
+          // Step 1: Strike through the red text (staggered per card)
+          setTimeout(function() {
+            card.classList.add('struck');
+          }, 800 + i * 350);
+          // Step 2: Reveal green text and label
+          setTimeout(function() {
+            card.classList.add('revealed');
+          }, 800 + i * 350 + 1000);
+        });
+        // Step 3: Reveal "Until now." after last card
+        setTimeout(function() {
+          var wrap = document.getElementById('costPunchlineWrap');
+          var text = document.getElementById('costPunchline');
+          if (wrap) { wrap.style.maxHeight = '2.5rem'; }
+          setTimeout(function() {
+            if (text) { text.style.opacity = '1'; }
+          }, 300);
+        }, 800 + 5 * 350 + 1000 + 600);
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  costObserver.observe(costGrid);
+})();
+
 // Hero form
 function submitHero() {
   const name = document.getElementById('hName').value.trim();
