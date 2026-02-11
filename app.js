@@ -213,7 +213,7 @@ calcROI();
     function setRevenue(val) {
       revenue = val;
       var s = revenue.toLocaleString();
-      var h = '';
+      var h = '<span class="revenue-static" style="margin-right:0.35em;">$</span>';
       for (var i = 0; i < s.length; i++) {
         if (s[i] === ',') {
           h += '<span class="revenue-static">,</span>';
@@ -221,7 +221,7 @@ calcROI();
           var d = parseInt(s[i]);
           var inner = '';
           for (var n = 0; n <= 9; n++) inner += '<span>' + n + '</span>';
-          h += '<span class="revenue-digit"><span class="revenue-digit-inner" style="transform:translateY(-' + (d * 1.3) + 'em);transition-delay:' + (i * 45) + 'ms">' + inner + '</span></span>';
+          h += '<span class="revenue-digit"><span class="revenue-digit-inner" style="transform:translateY(-' + (d * 1.4) + 'em);transition-delay:' + (i * 45) + 'ms">' + inner + '</span></span>';
         }
       }
       revenueEl.innerHTML = h;
